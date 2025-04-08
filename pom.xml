@@ -37,7 +37,25 @@
 
     <properties>
         <java.version>21</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <springdoc.openapi.version>1.6.15</springdoc.openapi.version>
+        <spring.cloud.azure.version>5.21.0</spring.cloud.azure.version>
+        <lombok.version>1.18.38</lombok.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.azure.spring</groupId>
+                <artifactId>spring-cloud-azure-dependencies</artifactId>
+                <version>${spring.cloud.azure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -51,14 +69,26 @@
         </dependency>
 
         <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-starter</artifactId>
-            <version>5.21.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.openapi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -2,6 +2,11 @@ spring:
   application:
     name: eventhub
 
+server:
+  port: 8080
+  servlet:
+    context-path: /eventhub
+
 management:
   info:
     env:
