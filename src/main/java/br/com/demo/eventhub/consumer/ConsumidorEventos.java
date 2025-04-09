@@ -2,11 +2,11 @@ package br.com.demo.eventhub.consumer;
 
 import java.util.function.Consumer;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.azure.messaging.eventhubs.EventHubClientBuilder;
 import com.azure.messaging.eventhubs.EventProcessorClientBuilder;
 import com.azure.messaging.eventhubs.checkpointstore.blob.BlobCheckpointStore;
 import com.azure.messaging.eventhubs.models.ErrorContext;
@@ -20,25 +20,26 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class ConsumidorEventos {
 
-    private static final String EVENT_HUB_NAME = "demo-01";
+    @Value("${spring.stream.bindings.consume-in-0.connection-string}")
+    private String consumidorConnectionString;
 
-    private static final String CONNECTION_STRING = "Endpoint=sb://demo-eventhub-patri.servicebus.windows.net/;SharedAccessKeyName=consumer;SharedAccessKey=;EntityPath="
-            .concat(EVENT_HUB_NAME);
+    @Value("${spring.stream.bindings.consume-in-0.consumer-group}")
+    private String consumerGroup;
 
     private static final String STORAGE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=demostorageaccountpatri;AccountKey=;EndpointSuffix=core.windows.net";
 
     private static final String CONTAINER_NAME = "demo-eventhub-checkpoint";
 
     @EventListener(ApplicationReadyEvent.class)
-    private void startConsumer() {
+    private void initConsumidor() {
         BlobContainerAsyncClient blobContainerAsyncClient = new BlobContainerClientBuilder()
                 .connectionString(STORAGE_CONNECTION_STRING)
                 .containerName(CONTAINER_NAME)
                 .buildAsyncClient();
 
         new EventProcessorClientBuilder()
-                .connectionString(CONNECTION_STRING, EVENT_HUB_NAME)
-                .consumerGroup(EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME)
+                .connectionString(consumidorConnectionString)
+                .consumerGroup(consumerGroup)
                 .processEvent(PROCESSA_EVENTO)
                 .processError(PROCESSA_ERRO)
                 .checkpointStore(new BlobCheckpointStore(blobContainerAsyncClient))

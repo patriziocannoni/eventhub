@@ -1,6 +1,13 @@
 spring:
   application:
     name: eventhub
+  stream:
+    bindings:
+      consume-in-0:
+        connection-string: Endpoint=sb://demo-eventhub-patri.servicebus.windows.net/;SharedAccessKeyName=consumer;SharedAccessKey=;EntityPath=demo-01
+        consumer-group: consumer-group-1
+      supply-out-0:
+        connection-string: Endpoint=sb://demo-eventhub-patri.servicebus.windows.net/;SharedAccessKeyName=producer;SharedAccessKey=;EntityPath=demo-01
 
 server:
   port: 8080
