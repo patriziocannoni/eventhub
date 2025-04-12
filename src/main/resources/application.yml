@@ -1,13 +1,24 @@
 spring:
   application:
     name: eventhub
-  stream:
-    bindings:
-      consume-in-0:
-        connection-string: Endpoint=sb://demo-eventhub-patri.servicebus.windows.net/;SharedAccessKeyName=consumer;SharedAccessKey=;EntityPath=demo-01
-        consumer-group: consumer-group-1
-      supply-out-0:
-        connection-string: Endpoint=sb://demo-eventhub-patri.servicebus.windows.net/;SharedAccessKeyName=producer;SharedAccessKey=;EntityPath=demo-01
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          endpoint: https://demo-keyvault-patri.vault.azure.net
+          tenant-id: 49f5d21f-223c-4e49-b174-2928c22b3243
+          client-id: ab38e2ef-0fbe-4b6f-b5e0-f7de9b04b5fc
+          client-secret: ${AZURE_APP_CLIENT_SECRET}
+      eventhubs:
+        producer-0:
+          connection-string-secret-name: demo-event-hub-patri-producer-0-connectionstring
+        consumer-0:
+          connection-string-secret-name: demo-event-hub-patri-consumer-0-connectionstring
+          consumer-group: $Default
+        processor:
+          checkpoint-store:
+            connection-string-secret-name: demo-event-hub-patri-checkpoint-store-connectionstring
+            container-name: demo-eventhub-checkpoint
 
 server:
   port: 8080

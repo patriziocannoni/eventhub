@@ -24,7 +24,7 @@
             "projectName": "eventhub",
             "vmArgs": [
                 "-Dserver.port=8090",
-                "-Dspring.stream.bindings.consume-in-0.consumer-group=consumer-group-2"
+                "-Dspring.stream.bindings.consumer-0.consumer-group=consumer-group-2"
             ]
         }
     ]
