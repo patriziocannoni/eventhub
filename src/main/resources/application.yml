@@ -6,8 +6,8 @@ spring:
       keyvault:
         secret:
           endpoint: https://demo-keyvault-patri.vault.azure.net
-          tenant-id: 49f5d21f-223c-4e49-b174-2928c22b3243
-          client-id: ab38e2ef-0fbe-4b6f-b5e0-f7de9b04b5fc
+          tenant-id: ${AZURE_TENANT_ID}
+          client-id: ${AZURE_APP_CLIENT_ID}
           client-secret: ${AZURE_APP_CLIENT_SECRET}
       eventhubs:
         producer-0:
