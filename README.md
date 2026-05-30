@@ -6,7 +6,7 @@ Esta aplicação mostra como utilizar um Azure Event Hub para enviar e receber m
 
 ### Configuração do Azure App no Microsoft Entra
 
-No Azure Microsoft Entra selecionar App registrations para registrar uma nova App.<br/>
+No <i>Azure Microsoft Entra</i> selecionar App registrations para registrar uma nova App.<br/>
 Esse registro vai criar um Client ID.<br/>
 Para criar uma Client Secret escolher a opção Certificates & secrets dentro do menu da aplicação criada.
 

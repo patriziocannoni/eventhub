@@ -55,7 +55,7 @@ public class ConsumidorEventos {
                 .buildEventProcessorClient()
                 .start();
         
-        log.info("Consumer inicializado");
+        log.info("Consumidor inicializado");
     }
 
     private static final Consumer<EventContext> PROCESSA_EVENTO = new Consumer<EventContext>() {

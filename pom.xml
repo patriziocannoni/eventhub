@@ -18,22 +18,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>eventhub</name>
     <description>Demo project for Spring Boot with Azure Event Hub</description>
-    <url />
-
-    <licenses>
-        <license />
-    </licenses>
-
-    <developers>
-        <developer />
-    </developers>
-
-    <scm>
-        <connection />
-        <developerConnection />
-        <tag />
-        <url />
-    </scm>
 
     <properties>
         <java.version>21</java.version>
@@ -42,7 +26,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <springdoc.openapi.version>1.6.15</springdoc.openapi.version>
         <spring.cloud.azure.version>5.21.0</spring.cloud.azure.version>
-        <lombok.version>1.18.38</lombok.version>
+        <lombok.version>1.18.42</lombok.version>
     </properties>
 
     <dependencyManagement>
